@@ -46,3 +46,11 @@ group :development do
   # gem "spring"
 end
 
+# JWT認証方式を使う
+gem 'jwt'
+
+# Json形式に整形する
+gem 'active_model_serializers'
+
+# slugを作る
+gem 'friendly_id', '~> 5.4.0'
