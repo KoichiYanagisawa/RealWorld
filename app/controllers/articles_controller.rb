@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user, only: :create
+  before_action :authenticate_user, only: %i[create update delete]
   def create
     @article = @current_user.articles.build(article_params)
     @article.assign_tags(params[:article][:tagList])
@@ -11,7 +11,41 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # 一旦タグの配列は無視してその他の記事の属性を取得することにする
+  def show
+    @article = Article.find_by(slug: params[:slug])
+    if @article
+      render json: { article: article_response(@article) }, status: :ok
+    else
+      render json: { error: 'Article not found' }, status: :not_found
+    end
+  end
+
+  def update
+    @article = Article.find_by(slug: params[:slug])
+    if @article&.update(article_params)
+      render json: { article: article_response(@article) }, status: :ok
+    else
+      if @article
+        render json: @article.errors, status: :unprocessable_entity
+      else
+        render json: { error: 'Article not found' }, status: :not_found
+      end
+    end
+  end
+
+  def destroy
+    @article = Article.find_by(slug: params[:slug])
+    if @article&.destroy
+      render json: {}, status: :ok
+    else
+      if @article
+        render json: @article.errors, status: :unprocessable_entity
+      else
+        render json: { error: 'Article not found' }, status: :not_found
+      end
+    end
+  end
+
   def article_params
     params.require(:article).permit(:title, :description, :body, :tagList)
   end
@@ -36,5 +70,12 @@ class ArticlesController < ApplicationController
 
   def authenticate_user
     @current_user = decode_token
+  end
+
+  def authorize_user
+    @article = Article.find_by(slug: params[:slug])
+    return if  @article&.user != @current_user
+
+    render json: { error: 'User not authorized' }, status: :unauthorized
   end
 end

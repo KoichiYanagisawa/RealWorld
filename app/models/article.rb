@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
-  has_many :article_tags
+  has_many :article_tags, dependent: :destroy
   has_many :tags, through: :article_tags
   belongs_to :user
 
