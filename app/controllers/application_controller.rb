@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   private
 
-  # 共有秘密鍵を使ったHMAC方式に則って秘密鍵を使う
+  # 共有秘密鍵を使用
   def generate_jwt(user)
     payload = { user_id: user.id, exp: 60.hours.from_now.to_i }
     secret = Rails.application.secrets.secret_key_base

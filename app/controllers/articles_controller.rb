@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user, only: %i[create update delete]
+  before_action :authenticate_user, only: %i[create update destroy]
+  before_action :authorize_user, only: %i[update destroy]
+
   def create
     @article = @current_user.articles.build(article_params)
     @article.assign_tags(params[:article][:tagList])
@@ -50,6 +52,8 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :description, :body, :tagList)
   end
 
+  private
+
   def article_response(article)
     {
       "slug": article.slug,
@@ -74,7 +78,7 @@ class ArticlesController < ApplicationController
 
   def authorize_user
     @article = Article.find_by(slug: params[:slug])
-    return if  @article&.user != @current_user
+    return if @article && (@article.user.id == @current_user.id)
 
     render json: { error: 'User not authorized' }, status: :unauthorized
   end
