@@ -1,24 +1,15 @@
-# README
+# アプレンティスの課題としてRealWorldに取り組みました
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 実装したエンドポイント
 
-Things you may want to cover:
+- [Registration](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#registration)
+- [Create Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#create-article)
+- [Get Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#get-article)
+- [Update Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#update-article)
+- [Delete Article](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints#delete-article)
 
-* Ruby version
+## +α要素
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ArticleとTagを多対多として用意し、中間テーブルで解決。
+- Articleを削除した際は中間テーブルも合わせて削除、Tagはそのまま残す。
+- Userを削除した場合はArticle、中間テーブルも連動して削除。
