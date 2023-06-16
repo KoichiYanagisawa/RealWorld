@@ -25,6 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         password: 'jojojosyu'
       }
     }
+    puts "はいった"
     assert_response :unprocessable_entity
     assert_nil JSON.parse(@response.body)['user']
   end
