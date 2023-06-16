@@ -54,3 +54,8 @@ gem 'active_model_serializers'
 
 # slugを作る
 gem 'friendly_id', '~> 5.4.0'
+
+# テストデータを作成する
+group :development, :test do
+  gem 'factory_bot_rails'
+end
