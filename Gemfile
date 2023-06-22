@@ -59,3 +59,9 @@ gem 'friendly_id', '~> 5.4.0'
 group :development, :test do
   gem 'factory_bot_rails'
 end
+
+# パスワードを隠蔽する
+gem 'dotenv-rails'
+
+# MySQLを使えるようにする
+gem 'mysql2'
