@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  get '/', to: 'elb#ok'
   scope :api do
-    get 'elb/ok'
     post '/users', to: 'users#create'
     post '/users/login', to: 'sessions#create'
     post '/articles', to: 'articles#create'
