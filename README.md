@@ -14,3 +14,7 @@
 - ArticleとTagを多対多として用意し、中間テーブルで解決。
 - Articleを削除した際は中間テーブルも合わせて削除、Tagはそのまま残す。
 - Userを削除した場合はArticle、中間テーブルも連動して削除。
+
+## インフラ構成図
+
+<img src="./RealWorldInfra.drawio.png" />
