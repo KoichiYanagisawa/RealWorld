@@ -15,6 +15,12 @@
 - Articleを削除した際は中間テーブルも合わせて削除、Tagはそのまま残す。
 - Userを削除した場合はArticle、中間テーブルも連動して削除。
 
+## エンドポイント
+
+- PostmanのAPIURLを以下のURLで置き換えてテストを実施してください。
+
+<a href="https://tapfindcase.com">https://tapfindcase.com</a>
+
 ## インフラ構成図
 
 <img src="./RealWorldInfra.drawio.png" />
