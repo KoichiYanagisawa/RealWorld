@@ -168,6 +168,7 @@ GEM
     rake (13.0.6)
     reline (0.3.5)
       io-console (~> 0.5)
+    sd_notify (0.1.1)
     sqlite3 (1.6.3-arm64-darwin)
     sqlite3 (1.6.3-x86_64-linux)
     thor (1.2.2)
@@ -195,6 +196,7 @@ DEPENDENCIES
   mysql2
   puma (~> 5.0)
   rails (~> 7.0.5)
+  sd_notify
   sqlite3 (~> 1.4)
   tzinfo-data
 

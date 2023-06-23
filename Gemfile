@@ -65,3 +65,6 @@ gem 'dotenv-rails'
 
 # MySQLを使えるようにする
 gem 'mysql2'
+
+# notifyソケットタイプを使ってPumaがsystemdと通信する準備
+gem 'sd_notify'

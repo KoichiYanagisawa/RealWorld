@@ -6,10 +6,11 @@ After=network.target
 [Service]
 Type=notify
 WatchdogSec=10
+User=ec2-user
 
-WorkingDirectory=/home/ec2-user/RealWorld/config/
+WorkingDirectory=/home/ec2-user/RealWorld/
 
-ExecStart=/home/ec2-user/.rbenv/shims/puma -C /home/ec2-user/RealWorld/config/puma.rb
+ExecStart=/home/ec2-user/.rbenv/shims/puma -C config/puma.rb
 
 Restart=always
 
