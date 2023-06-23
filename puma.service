@@ -1,0 +1,17 @@
+[Unit]
+Description=Puma HTTP Server
+After=network.target
+
+
+[Service]
+Type=notify
+WatchdogSec=10
+
+WorkingDirectory=/home/ec2-user/RealWorld/config/
+
+ExecStart=/home/ec2-user/.rbenv/shims/puma -C /home/ec2-user/RealWorld/config/puma.rb
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
