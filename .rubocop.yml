@@ -1,3 +1,8 @@
+require: rubocop-rails
+
+Layout/LineLength:
+  Max: 120
+
 AllCops:
   TargetRubyVersion: 3.2
   Exclude:
@@ -7,9 +12,6 @@ AllCops:
 
 Rails:
   Enabled: true
-
-Metrics/LineLength:
-  Max: 120
 
 Style/Documentation:
   Enabled: false

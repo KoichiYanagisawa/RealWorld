@@ -70,4 +70,6 @@ gem 'mysql2'
 gem 'sd_notify'
 
 # rubocopを入れる
-gem 'rubocop', '~> 1.51', require: false
+group :development, :test do
+  gem 'rubocop-rails', require: false
+end
