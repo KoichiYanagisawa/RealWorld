@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # FactoryBot.define do
 #   factory :article do
 #     slug { 'how-to-train-your-dragon' }

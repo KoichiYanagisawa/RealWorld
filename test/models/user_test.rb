@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
@@ -9,9 +11,9 @@ class UserTest < ActiveSupport::TestCase
     @user1 = User.new(username: 'hakasetaro', email: '', password: 'hakahakase')
     @user2 = User.new(username: 'hakasetaro', email: 'hakase@example.com', password: '')
     @user3 = User.new(username: '', email: 'hakase@example.com', password: 'hakahakase')
-    refute @user1.valid?
-    refute @user2.valid?
-    refute @user3.valid?
+    assert_not @user1.valid?
+    assert_not @user2.valid?
+    assert_not @user3.valid?
   end
 
   test 'should save user' do
