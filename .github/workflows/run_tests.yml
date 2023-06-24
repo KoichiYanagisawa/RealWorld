@@ -8,8 +8,16 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v3
@@ -22,11 +30,11 @@ jobs:
     - name: Install dependencies
       run: bundle install
 
-    - name: Start Mysql
-      run: sudo /etc/init.d/mysql start  # ubuntuでは自動起動しないので追加
+    - name: Create Database
+      run: bundle exec rails db:create RAILS_ENV=test
 
     - name: Run tests
-      run: bundle exec rails test  # ここを修正
+      run: bundle exec rails test
 
     - name: Run rubocop
       run: bundle exec rubocop
