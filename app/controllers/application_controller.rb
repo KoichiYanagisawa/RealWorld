@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
     header = request.headers['Authorization']
     raise 'Authorization header is missing' unless header
 
-    token = header.split(' ').last
+    token = header.split.last
 
     begin
       decoded = JWT.decode(token, Rails.application.credentials.secret_key_base)[0]
