@@ -4,6 +4,7 @@ Layout/LineLength:
   Max: 120
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.2
   Exclude:
     - 'db/**/*'

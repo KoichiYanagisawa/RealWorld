@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   private
 
@@ -10,11 +12,10 @@ class ApplicationController < ActionController::API
 
   def decode_token
     header = request.headers['Authorization']
-    if header
-      token = header.split(' ').last
-    else
-      raise 'Authorization header is missing'
-    end
+    raise 'Authorization header is missing' unless header
+
+    token = header.split(' ').last
+
     begin
       decoded = JWT.decode(token, Rails.application.credentials.secret_key_base)[0]
       User.find(decoded['user_id'])

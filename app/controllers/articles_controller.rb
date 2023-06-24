@@ -1,6 +1,17 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
   before_action :authenticate_user, only: %i[create update destroy]
   before_action :authorize_user, only: %i[update destroy]
+
+  def show
+    @article = Article.find_by(slug: params[:slug])
+    if @article
+      render json: { article: article_response(@article) }, status: :ok
+    else
+      render json: { error: 'Article not found' }, status: :not_found
+    end
+  end
 
   def create
     @article = @current_user.articles.build(article_params)
@@ -13,25 +24,14 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-    @article = Article.find_by(slug: params[:slug])
-    if @article
-      render json: { article: article_response(@article) }, status: :ok
-    else
-      render json: { error: 'Article not found' }, status: :not_found
-    end
-  end
-
   def update
     @article = Article.find_by(slug: params[:slug])
     if @article&.update(article_params)
       render json: { article: article_response(@article) }, status: :ok
+    elsif @article
+      render json: @article.errors, status: :unprocessable_entity
     else
-      if @article
-        render json: @article.errors, status: :unprocessable_entity
-      else
-        render json: { error: 'Article not found' }, status: :not_found
-      end
+      render json: { error: 'Article not found' }, status: :not_found
     end
   end
 
@@ -39,12 +39,10 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(slug: params[:slug])
     if @article&.destroy
       render json: {}, status: :ok
+    elsif @article
+      render json: @article.errors, status: :unprocessable_entity
     else
-      if @article
-        render json: @article.errors, status: :unprocessable_entity
-      else
-        render json: { error: 'Article not found' }, status: :not_found
-      end
+      render json: { error: 'Article not found' }, status: :not_found
     end
   end
 
@@ -56,18 +54,18 @@ class ArticlesController < ApplicationController
 
   def article_response(article)
     {
-      "slug": article.slug,
-      "title": article.title,
-      "description": article.description,
-      "body": article.body,
-      "tagList": article.tags.map(&:name),
-      "createdAt": article.created_at,
-      "updatedAt": article.updated_at,
-      "author": {
-        "username": article.user.username,
-        "bio": article.user.bio,
-        "image": article.user.image,
-        "following": false
+      slug: article.slug,
+      title: article.title,
+      description: article.description,
+      body: article.body,
+      tagList: article.tags.map(&:name),
+      createdAt: article.created_at,
+      updatedAt: article.updated_at,
+      author: {
+        username: article.user.username,
+        bio: article.user.bio,
+        image: article.user.image,
+        following: false
       }
     }
   end
