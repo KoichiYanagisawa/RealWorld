@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
