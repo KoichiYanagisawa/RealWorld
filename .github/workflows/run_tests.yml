@@ -22,6 +22,9 @@ jobs:
     - name: Install dependencies
       run: bundle install
 
+    - name: Start Mysql
+      run: sudo /etc/init.d/mysql start  # ubuntuでは自動起動しないので追加
+
     - name: Run tests
       run: bundle exec rails test  # ここを修正
 
