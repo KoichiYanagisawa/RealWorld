@@ -14,9 +14,7 @@ class Article < ApplicationRecord
   end
 
   def tag_list
-    tags.collect do |tag|
-      tag.name
-    end.join(', ')
+    tags.collect(&:name).join(', ')
   end
 
   def tag_list=(tags_string)
