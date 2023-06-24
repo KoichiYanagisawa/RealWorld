@@ -33,6 +33,9 @@ jobs:
     - name: Create Database
       run: bundle exec rails db:create RAILS_ENV=test
 
+    - name: Run migrations
+      run: bundle exec rails db:migrate RAILS_ENV=test
+
     - name: Run tests
       run: bundle exec rails test
 
