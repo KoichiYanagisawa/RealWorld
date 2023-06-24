@@ -65,9 +65,6 @@ end
 # パスワードを隠蔽する
 gem 'dotenv-rails'
 
-# MySQLを使えるようにする
-gem 'mysql2'
-
 # notifyソケットタイプを使ってPumaがsystemdと通信する準備
 gem 'sd_notify'
 
@@ -75,3 +72,6 @@ gem 'sd_notify'
 group :development, :test do
   gem 'rubocop-rails', require: false
 end
+
+# MySQLを使えるようにする
+gem 'mysql2'
