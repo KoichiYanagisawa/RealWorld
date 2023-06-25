@@ -55,9 +55,6 @@ jobs:
           HOSTNAME: ${{ secrets.HOSTNAME  }}
           USER_NAME: ${{ secrets.USER_NAME  }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          # RAILS_PRODUCTION_KEY: ${{ secrets.RAILS_PRODUCTION_KEY }}
-          # echo "$RAILS_PRODUCTION_KEY" > config/credentials/production.key &&
-          # echo "$RAILS_MASTER_KEY" > config/master.key &&
 
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
@@ -66,6 +63,7 @@ jobs:
             git fetch --all &&
             git reset --hard origin/main &&
             source ~/.bash_profile &&
+            echo "$RAILS_MASTER_KEY" > config/master.key &&
             bundle install --without development test &&
             bin/rails db:migrate &&
             sudo systemctl reload nginx &&
