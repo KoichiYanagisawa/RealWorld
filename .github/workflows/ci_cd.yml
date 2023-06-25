@@ -62,6 +62,7 @@ jobs:
             cd /home/ec2-user/RealWorld &&
             git fetch --all &&
             git reset --hard origin/main &&
+            echo "$RAILS_MASTER_KEY" > config/master.key &&
             source ~/.bash_profile &&
             bundle install --without development test &&
             bin/rails db:migrate &&
