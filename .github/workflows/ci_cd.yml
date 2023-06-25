@@ -62,7 +62,8 @@ jobs:
             git fetch --all &&
             git reset --hard origin/main &&
             source ~/.bash_profile &&
-            bundle install --without development test&&
-            sudo systemctl start nginx &&
-            sudo systemctl start puma
+            bundle install --without development test &&
+            bin/rails db:migrate &&
+            sudo systemctl reload nginx &&
+            sudo systemctl restart puma
             '
