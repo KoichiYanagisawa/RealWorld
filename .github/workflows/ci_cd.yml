@@ -61,7 +61,7 @@ jobs:
             cd /home/ec2-user/RealWorld &&
             git pull origin main &&
             source ~/.bash_profile &&
-            bundle install &&
+            bundle install --without development test&&
             sudo systemctl start nginx &&
             sudo systemctl start puma
             '
