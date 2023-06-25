@@ -60,6 +60,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             cd /home/ec2-user/RealWorld &&
             git pull origin main &&
+            source ~/.bash_profile &&
             bundle install &&
             sudo systemctl start nginx &&
             sudo systemctl start puma
