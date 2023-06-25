@@ -23,4 +23,6 @@
 
 ## インフラ構成図
 
+- ステップ2まで反映
+
 <img src="./RealWorldInfra.drawio.png" />
