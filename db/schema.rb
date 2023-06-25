@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_062059) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_012720) do
   create_table "article_tags", force: :cascade do |t|
     t.integer "article_id", null: false
     t.integer "tag_id", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_062059) do
     t.string "token"
     t.text "bio"
     t.string "image"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "article_tags", "articles"

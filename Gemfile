@@ -74,4 +74,6 @@ group :development, :test do
 end
 
 # MySQLを使えるようにする
-gem 'mysql2'
+group :production do
+  gem 'mysql2'
+end
