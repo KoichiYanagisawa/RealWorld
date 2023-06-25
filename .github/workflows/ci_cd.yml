@@ -63,7 +63,7 @@ jobs:
             git fetch --all &&
             git reset --hard origin/main &&
             source ~/.bash_profile &&
-            echo "$RAILS_MASTER_KEY" > config/master.key &&
+            echo $RAILS_MASTER_KEY > config/master.key &&
             bundle install --without development test &&
             bin/rails db:migrate &&
             sudo systemctl reload nginx &&
