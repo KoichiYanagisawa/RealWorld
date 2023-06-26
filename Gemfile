@@ -77,3 +77,7 @@ end
 group :production do
   gem 'mysql2'
 end
+
+# Centryでエラー監視
+gem 'sentry-rails'
+gem 'sentry-ruby'
