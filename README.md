@@ -23,6 +23,8 @@
 
 ## インフラ構成図
 
-- ステップ4まで反映
+- ステップ3と4はGitHub Actionsを使用
+- ステップ5はSentryを使用
+- ステップ6はRoute53を使用
 
 <img src="./RealWorldInfra.drawio.png" />
