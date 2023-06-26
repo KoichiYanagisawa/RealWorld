@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_user, only: %i[update destroy]
 
   def show
+    raise "This is an error for testing Sentry"
     @article = Article.find_by(slug: params[:slug])
     if @article
       render json: { article: article_response(@article) }, status: :ok
