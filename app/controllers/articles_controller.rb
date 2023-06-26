@@ -25,7 +25,14 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    raise 'This is an error for testing Sentry'
+    @article = Article.find_by(slug: params[:slug])
+    if @article&.update(article_params)
+      render json: { article: article_response(@article) }, status: :ok
+    elsif @article
+      render json: @article.errors, status: :unprocessable_entity
+    else
+      render json: { error: 'Article not found' }, status: :not_found
+    end
   end
 
   def destroy
