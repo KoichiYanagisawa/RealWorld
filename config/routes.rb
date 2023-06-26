@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     post '/articles', to: 'articles#create'
     get '/articles/:slug', to: 'articles#show'
     put '/articles/:slug', to: 'articles#update'
-    delete '/articles/:slug', to: 'articles#destro'
+    delete '/articles/:slug', to: 'articles#destroy'
   end
 end
